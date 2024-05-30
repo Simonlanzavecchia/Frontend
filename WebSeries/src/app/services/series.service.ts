@@ -7,7 +7,7 @@ import { serie } from '../../types/series.types';
 })
 export class SeriesService {
 
-  private apiUrl = 'http://localhost:3000'; // URL de tu API
+  private apiUrl = 'http://localhost:3000';
 
   constructor() {}
 

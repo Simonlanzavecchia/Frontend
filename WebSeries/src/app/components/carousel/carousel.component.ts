@@ -1,14 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { serie } from '../../../types/series.types';
-import { SeriesService } from '../../services/series.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
+import { SeriesService } from '../../services/series.service';
+import { serie } from '../../../types/series.types';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    CarouselModule
+  ],
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
+  providers: [SeriesService]
 })
 export class CarouselComponent implements OnInit {
 
@@ -24,10 +31,10 @@ export class CarouselComponent implements OnInit {
     this.seriesService.getAllSeries().subscribe(
       (data: serie[]) => {
         this.seriesData = data;
-        console.log('series ', this.seriesData)
+        console.log('series traidas');
       },
       (error) => {
-        console.log('Error fetching series:', error);
+        console.error('Error fetching series:', error);
       }
     );
   }
