@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+/* Definiciones de tipos de letras */
+.primary-text {
+    font-family: 'Roboto', sans-serif;;
+    font-size: 16px;
+    color: #fdfdfd;
+  }
+
+  .secondary-text {
+    font-family: 'Georgia, serif';
+    font-size: 14px;
+    color: #fff9f9;
+  }
+  
+  /* Definiciones de colores de fondo */
+  .primary-background {
+    background-color: #000000;
+  }
+  
+  .secondary-background {
+    background-color: #000000;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000000; /* Cambiar el color de fondo a blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+  
