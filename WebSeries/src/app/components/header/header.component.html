@@ -1,1 +1,12 @@
-<p>header works!</p>
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <p-button (click)="menu.toggle($event)" icon="pi pi-list"></p-button>
+    </div>
+    <div class="p-toolbar-group-center">
+        Weeklyd
+    </div>
+    <div class="p-toolbar-group-end">
+        <p-button icon="pi pi-user"></p-button>
+    </div>
+</p-toolbar>
