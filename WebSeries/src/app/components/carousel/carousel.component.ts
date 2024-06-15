@@ -27,6 +27,24 @@ export class CarouselComponent implements OnInit {
     this.loadAllSeries();
   }
 
+  responsiveOptions: any[] = [
+    {
+        breakpoint: '1024px', 
+        numVisible: 3,      
+        numScroll: 1          
+    },
+    {
+        breakpoint: '768px', 
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '560px',  
+        numVisible: 1,
+        numScroll: 1
+    }
+];
+
   loadAllSeries() {
     this.seriesService.getAllSeries().subscribe(
       (data: serie[]) => {

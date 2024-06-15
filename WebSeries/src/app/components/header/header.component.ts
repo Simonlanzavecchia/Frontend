@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
-import { ToastModule } from 'primeng/toast';
+import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ToolbarModule, ButtonModule, MenuModule, ToastModule],
+  imports: [CommonModule, ToolbarModule, ButtonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  items: any[];
+  items: MenuItem[];
+  menuVisible = false;
 
-  constructor() {
+  constructor(private router: Router) {
     this.items = [
       {
         label: 'File',
@@ -33,7 +35,24 @@ export class HeaderComponent {
     ];
   }
 
-  toggleMenu(event: Event, menu: any) {
-    menu.toggle(event);
+  toggleMenu(event: Event) {
+    event.stopPropagation();
+    this.menuVisible = !this.menuVisible;
+  }
+
+  menuItemClicked() {
+    this.menuVisible = false;
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (!document.getElementsByClassName('menu')[0].contains(event.target as Node)) {
+      this.menuVisible = false;
+    }
   }
 }
+

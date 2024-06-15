@@ -1,0 +1,62 @@
+.p-toolbar-group-center {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  background-color: rgb(67, 66, 69);
+  border: 1px solid #5e5d63;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  margin-top: 135px;
+  border-radius: 8px;
+
+  &.visible {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      background-color: #ff9a9a;
+      color: black; 
+      border-radius: 8px; 
+      margin: 3px;
+      border: 1px solid white;
+
+      &:hover {
+        background-color: #ed7876;
+      }
+
+      ul {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: 0;
+
+        li {
+          white-space: nowrap;
+        }
+      }
+
+      &:hover ul {
+        display: block;
+      }
+
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
