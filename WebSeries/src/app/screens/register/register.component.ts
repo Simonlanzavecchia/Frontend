@@ -40,6 +40,7 @@ export class RegisterComponent {
       this.regService.registerUser(this.nuevoUsuario, this.nuevaContrasenia)
         .then(() => {
           this.popup.message = 'Registro exitoso.';
+          this.popup.showAndRedirect();
         })
         .catch(error => {
           console.error('Error:', error);
