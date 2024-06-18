@@ -1,0 +1,20 @@
+<div class="container register-form">
+    <h2>Registro</h2>
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="newUsername">Nombre de Usuario:</label>
+        <input type="text" id="newUsername" name="newUsername" [(ngModel)]="nuevoUsuario" placeholder="Ingrese un nombre de usuario" required>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Contraseña:</label>
+        <input type="password" id="newPassword" name="newPassword" [(ngModel)]="nuevaContrasenia" placeholder="Ingrese una contraseña" required>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Contraseña:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmacionContrasenia" placeholder="Confirme la contraseña" required>
+      </div>
+      <button type="submit" (click)="onRegister()" [disabled]="!registerForm.form.valid || nuevaContrasenia !== confirmacionContrasenia">Registrarse</button>
+      <app-popup></app-popup>
+    </form>
+  </div>
+  
