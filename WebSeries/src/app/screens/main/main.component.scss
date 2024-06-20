@@ -4,6 +4,7 @@ header {
   margin: 0 auto;
   position: fixed;
   top: 0;
+  z-index: 1003;
 }
 
 main {
@@ -12,4 +13,5 @@ main {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }

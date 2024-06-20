@@ -4,7 +4,7 @@
   font-weight: bold;
 }
 
-.menu {
+.menu, .login-menu {
   display: none;
   position: absolute;
   background-color: rgb(67, 66, 69);
@@ -24,6 +24,7 @@
     margin: 0;
 
     li {
+      position: relative;
       padding: 8px 12px;
       cursor: pointer;
       display: flex;
@@ -43,10 +44,11 @@
         position: absolute;
         left: 100%;
         top: 0;
-
-        li {
-          white-space: nowrap;
-        }
+        margin-left: 5px;
+        border-radius: 8px;
+        border: 1px solid #5e5d63;
+        background-color: rgb(67, 66, 69);
+        z-index: 9999;
       }
 
       &:hover ul {
@@ -59,4 +61,3 @@
     }
   }
 }
-

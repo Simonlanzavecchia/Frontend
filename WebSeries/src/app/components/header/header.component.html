@@ -1,24 +1,29 @@
 <p-toolbar>
-    <div class="p-toolbar-group-start" (document:click)="handleClickOutside($event)">
-      <div #menu class="menu" [class.visible]="menuVisible">
-        <ul>
-          <li *ngFor="let item of items" (click)="menuItemClicked()">
-            {{ item.label }}
-            <ul *ngIf="item.items">
-              <li *ngFor="let subItem of item.items">
-                <i [class]="subItem.icon"></i> {{ subItem.label }}
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <p-button (click)="toggleMenu($event)" icon="pi pi-list" severity="danger"></p-button>
+  <div class="p-toolbar-group-start" (document:click)="handleClickOutside($event)">
+    <div #menu class="menu" [class.visible]="menuVisible">
+      <ul>
+        <li *ngFor="let item of items" (click)="menuItemClicked()">
+          {{ item.label }}
+          <ul *ngIf="item.items">
+            <li *ngFor="let subItem of item.items">
+              <i [class]="subItem.icon"></i> {{ subItem.label }}
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <div class="p-toolbar-group-center">
-      Weeklyd
+    <p-button #menuButton (click)="toggleMenu($event)" icon="pi pi-list" severity="danger"></p-button>
+  </div>
+  <div class="p-toolbar-group-center">
+    Weeklyd
+  </div>
+  <div class="p-toolbar-group-end" (document:click)="handleClickOutside($event)">
+    <div #loginMenu class="login-menu" [class.visible]="loginMenuVisible">
+      <ul>
+        <li (click)="navigateToLogin(); loginMenuItemClicked()">Ingresar</li>
+        <li (click)="navigateToRegister(); loginMenuItemClicked()">Registrarse</li>
+      </ul>
     </div>
-    <div class="p-toolbar-group-end">
-      <p-button (click)="navigateToLogin()" icon="pi pi-user" severity="danger"></p-button>
-    </div>
-  </p-toolbar>
-  
+    <p-button #loginButton (click)="toggleLoginMenu($event)" icon="pi pi-user" severity="danger"></p-button>
+  </div>
+</p-toolbar>

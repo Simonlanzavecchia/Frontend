@@ -15,21 +15,19 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   items: MenuItem[];
   menuVisible = false;
+  loginMenuVisible = false;
 
   constructor(private router: Router) {
     this.items = [
       {
-        label: 'File',
-        items: [
-          { label: 'New', icon: 'pi pi-fw pi-plus' },
-          { label: 'Open', icon: 'pi pi-fw pi-external-link' }
-        ]
+        label: 'Buscar',
+        icon: 'pi pi-search'
       },
       {
-        label: 'Edit',
+        label: 'Ver',
         items: [
-          { label: 'Undo', icon: 'pi pi-fw pi-undo' },
-          { label: 'Redo', icon: 'pi pi-fw pi-redo' }
+          { label: 'Mejor rating', icon: 'pi pi-star' },
+          { label: 'Horror', icon: 'pi pi-prime' }
         ]
       }
     ];
@@ -38,21 +36,43 @@ export class HeaderComponent {
   toggleMenu(event: Event) {
     event.stopPropagation();
     this.menuVisible = !this.menuVisible;
+    if (this.menuVisible) {
+      this.loginMenuVisible = false;
+    }
+  }
+
+  toggleLoginMenu(event: Event) {
+    event.stopPropagation();
+    this.loginMenuVisible = !this.loginMenuVisible;
+    if (this.loginMenuVisible) {
+      this.menuVisible = false;
+    }
   }
 
   menuItemClicked() {
     this.menuVisible = false;
   }
 
+  loginMenuItemClicked() {
+    this.loginMenuVisible = false;
+  }
+
   navigateToLogin() {
     this.router.navigate(['/login']);
   }
 
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
+
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {
-    if (!document.getElementsByClassName('menu')[0].contains(event.target as Node)) {
+    if (
+      !document.getElementsByClassName('menu')[0].contains(event.target as Node) &&
+      !document.getElementsByClassName('login-menu')[0].contains(event.target as Node)
+    ) {
       this.menuVisible = false;
+      this.loginMenuVisible = false;
     }
   }
 }
-
