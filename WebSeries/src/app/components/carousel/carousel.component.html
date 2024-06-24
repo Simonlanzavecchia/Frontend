@@ -1,30 +1,30 @@
-<p-carousel 
-  [value]="seriesData" 
-  [numVisible]="5" 
-  [numScroll]="5" 
-  [circular]="false" 
-  [showIndicators]="false"
-  [responsiveOptions]="responsiveOptions">
-  <ng-template let-serie pTemplate="item">
-    <div class="border-1 surface-border border-round m-2 p-3 text-center">
-      <div class="mb-3 text-center">
-        <img 
-          [src]="serie.Poster_Link" 
-          [alt]="serie.Series_Title" 
-          class="w-full border-round" 
-          style="display: block; margin: 0 auto; border-radius: 8px;" />
-      </div>
-      <div class="text-center" style="display: flex; flex-direction: column; align-items: center;">
-        <div class="font-medium">
-          {{ serie.Series_Title }}
+<div class="carousel-container">
+  <h2 class="p-center">{{ title }}</h2>
+  <p-carousel 
+    [value]="seriesData" 
+    [numVisible]="5" 
+    [numScroll]="5" 
+    [circular]="false" 
+    [showIndicators]="false"
+    [responsiveOptions]="responsiveOptions">
+    <ng-template let-serie pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 p-3 text-center">
+        <div class="mb-3 text-center">
+          <img 
+            [src]="serie.Poster_Link" 
+            [alt]="serie.Series_Title" 
+            class="w-full border-round" 
+            style="display: block; margin: 0 auto; border-radius: 8px;" />
         </div>
-        <div class="font-semibold text-xl">
-          {{ serie.IMDB_Rating }}
+        <div class="text-center" style="display: flex; flex-direction: column; align-items: center;">
+          <div class="font-medium">
+            {{ serie.Series_Title }}
+          </div>
+          <div class="font-semibold text-xl">
+            {{ serie.IMDB_Rating }}
+          </div>
         </div>
       </div>
-    </div>
-  </ng-template>
-</p-carousel>
-
-
-
+    </ng-template>
+  </p-carousel>
+</div>

@@ -1,8 +1,8 @@
 <header>
-    <app-header></app-header>
+    <app-header (genreSelected)="onGenreSelected($event)"></app-header>
 </header>
 
 
 <main>
-    <app-carousel></app-carousel>
+    <app-carousel #carousel></app-carousel>
 </main>

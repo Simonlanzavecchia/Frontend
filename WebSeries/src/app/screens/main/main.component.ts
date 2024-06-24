@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { HeaderComponent } from '../../components/header/header.component';
 
@@ -11,5 +11,15 @@ import { HeaderComponent } from '../../components/header/header.component';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
+  @ViewChild('carousel') carousel!: CarouselComponent;
 
+  ngAfterViewInit() {}
+
+  onGenreSelected(genre: string) {
+    if (genre === 'Mejor rating') {
+      this.carousel.loadAllSeries();
+    } else {
+      this.carousel.loadSeriesGenre(genre);
+    }
+  }
 }

@@ -5,7 +5,7 @@
         <li *ngFor="let item of items" (click)="menuItemClicked()">
           {{ item.label }}
           <ul *ngIf="item.items">
-            <li *ngFor="let subItem of item.items">
+            <li *ngFor="let subItem of item.items" (click)="selectGenre(subItem.label ?? '')">
               <i [class]="subItem.icon"></i> {{ subItem.label }}
             </li>
           </ul>
@@ -27,3 +27,4 @@
     <p-button #loginButton (click)="toggleLoginMenu($event)" icon="pi pi-user" severity="danger"></p-button>
   </div>
 </p-toolbar>
+

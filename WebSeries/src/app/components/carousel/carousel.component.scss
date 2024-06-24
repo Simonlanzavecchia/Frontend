@@ -1,3 +1,11 @@
 // Import PrimeNG theme and core CSS files using relative paths
 @import '../../../../node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css';
 @import '../../../../node_modules/primeng/resources/primeng.min.css';
+
+.p-center {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }

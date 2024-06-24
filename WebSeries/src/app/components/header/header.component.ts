@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @Output() genreSelected = new EventEmitter<string>();
   items: MenuItem[];
   menuVisible = false;
   loginMenuVisible = false;
@@ -64,6 +65,17 @@ export class HeaderComponent {
   navigateToRegister() {
     this.router.navigate(['/register']);
   }
+
+  selectGenre(genre: string | undefined) {
+    if (genre) {
+      this.genreSelected.emit(genre);
+      console.log("Publico genero: " + genre);
+      this.menuVisible = false;
+    } else {
+      console.error("Invalid genre");
+    }
+  }
+  
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {

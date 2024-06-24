@@ -26,4 +26,20 @@ export class SeriesService {
         })
     );
   }
+
+  getSeriesGenre(genero: string): Observable<serie[]> {
+    return from(
+      fetch(`${this.apiUrl}/series/genero/`+genero)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .catch(error => {
+          console.error('Error fetching series:', error);
+          throw error;
+        })
+    );
+  }
 }

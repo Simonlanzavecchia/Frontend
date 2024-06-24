@@ -20,6 +20,7 @@ import { serie } from '../../../types/series.types';
 export class CarouselComponent implements OnInit {
 
   seriesData: serie[] = [];
+  title: string = 'Mejor rating';
 
   constructor(private seriesService: SeriesService) { }
 
@@ -29,26 +30,27 @@ export class CarouselComponent implements OnInit {
 
   responsiveOptions: any[] = [
     {
-        breakpoint: '1024px', 
-        numVisible: 3,      
-        numScroll: 1          
+      breakpoint: '1024px', 
+      numVisible: 3,      
+      numScroll: 1          
     },
     {
-        breakpoint: '768px', 
-        numVisible: 2,
-        numScroll: 1
+      breakpoint: '768px', 
+      numVisible: 2,
+      numScroll: 1
     },
     {
-        breakpoint: '560px',  
-        numVisible: 1,
-        numScroll: 1
+      breakpoint: '560px',  
+      numVisible: 1,
+      numScroll: 1
     }
-];
+  ];
 
-  loadAllSeries() {
+  public loadAllSeries() {
     this.seriesService.getAllSeries().subscribe(
       (data: serie[]) => {
         this.seriesData = data;
+        this.title = 'Mejor rating';
         console.log('series traidas');
       },
       (error) => {
@@ -56,4 +58,18 @@ export class CarouselComponent implements OnInit {
       }
     );
   }
+
+  public loadSeriesGenre(genre: string) {
+    this.seriesService.getSeriesGenre(genre).subscribe(
+      (data: serie[]) => {
+        this.seriesData = data;
+        this.title = genre;
+        console.log('series de genero traidas');
+      },
+      (error) => {
+        console.error('Error fetching series:', error);
+      }
+    );
+  }
+
 }
