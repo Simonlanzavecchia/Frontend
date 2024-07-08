@@ -23,6 +23,7 @@
           <div class="font-semibold text-xl">
             {{ serie.IMDB_Rating }}
           </div>
+          <button (click)="goToSeriesDetails(serie._id)" class="details-button">Ver detalles</button>
         </div>
       </div>
     </ng-template>

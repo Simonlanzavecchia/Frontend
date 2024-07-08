@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Columna izquierda para la imagen de la serie -->
+      <div class="col-md-4">
+        <img [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="img-fluid" style="border-radius: 8px;">
+      </div>
+      
+      <!-- Columna derecha para la información de la serie -->
+      <div class="col-md-8">
+        <h2>{{ serie.Series_Title }}</h2>
+        <div>
+          <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
+        </div>
+        <div>
+          <strong>Genre:</strong> {{ serie.Genre }}
+        </div>
+        <div>
+          <strong>Runtime of Series:</strong> {{ serie.Runtime_of_Series }}
+        </div>
+        <div>
+          <strong>Certificate:</strong> {{ serie.Certificate }}
+        </div>
+        <div>
+          <strong>Overview:</strong>
+          <p>{{ serie.Overview }}</p>
+        </div>
+        
+        <!-- Puedes mostrar más detalles según tu modelo de datos -->
+      </div>
+    </div>
+  </div>
+  

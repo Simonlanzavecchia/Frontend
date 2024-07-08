@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { CarouselModule } from 'primeng/carousel';
+import { Router } from '@angular/router';
 import { SeriesService } from '../../services/series.service';
 import { serie } from '../../../types/series.types';
 
@@ -22,7 +23,7 @@ export class CarouselComponent implements OnInit {
   seriesData: serie[] = [];
   title: string = 'Mejor rating';
 
-  constructor(private seriesService: SeriesService) { }
+  constructor(private seriesService: SeriesService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadAllSeries();
@@ -30,17 +31,17 @@ export class CarouselComponent implements OnInit {
 
   responsiveOptions: any[] = [
     {
-      breakpoint: '1024px', 
-      numVisible: 3,      
-      numScroll: 1          
+      breakpoint: '1024px',
+      numVisible: 3,
+      numScroll: 1
     },
     {
-      breakpoint: '768px', 
+      breakpoint: '768px',
       numVisible: 2,
       numScroll: 1
     },
     {
-      breakpoint: '560px',  
+      breakpoint: '560px',
       numVisible: 1,
       numScroll: 1
     }
@@ -70,6 +71,10 @@ export class CarouselComponent implements OnInit {
         console.error('Error fetching series:', error);
       }
     );
+  }
+
+  goToSeriesDetails(idSerie: string): void {
+    this.router.navigate(['/series', idSerie]);
   }
 
 }

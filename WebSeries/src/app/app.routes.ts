@@ -3,10 +3,12 @@ import { ErrorComponent } from './screens/error/error.component';
 import { MainComponent } from './screens/main/main.component';
 import { LoginComponent } from './screens/login/login.component';
 import { RegisterComponent } from './screens/register/register.component';
+import { SerieComponent } from './screens/serie/serie.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent },
+  { path: 'series/:idSerie', component: SerieComponent }
 ];

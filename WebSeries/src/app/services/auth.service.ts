@@ -13,7 +13,11 @@ export class AuthService {
   constructor() {}
 
   getUserById(idUsuario: string): Observable<any> {
-    return from (fetch(`${this.apiUrl}/users/${idUsuario}`));
+    return from(fetch(`${this.apiUrl}/users/${idUsuario}`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error))
+  );
   }
 
   login(idUsuario: string, contrasenia: string): Observable<boolean> {

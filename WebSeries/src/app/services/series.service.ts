@@ -42,4 +42,20 @@ export class SeriesService {
         })
     );
   }
+
+  getSerieById(id: string): Observable<serie> {
+    return from(
+      fetch(`${this.apiUrl}/series/${id}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .catch(error => {
+          console.error('Error fetching serie:', error);
+          throw error;
+        })
+    );
+  }
 }
