@@ -1,27 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component ,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SeriesService } from '../../services/series.service'; // Asegúrate de tener un servicio para obtener los detalles de una serie
+import { SeriesService } from '../../services/series.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-serie',
   templateUrl: './serie.component.html',
-  styleUrls: ['./serie.component.scss']
+  styleUrls: ['./serie.component.scss'],
 })
 export class SerieComponent implements OnInit {
   serie: any;
 
-  constructor(private route: ActivatedRoute, private serieService: SeriesService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private serieService: SeriesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
 
     if (idSerie !== null) {
-      this.serieService.getSerieById(idSerie).subscribe(data => {
-        this.serie = data;
-      });
+      this.serieService.getSerieById(idSerie).subscribe(
+        (data) => {
+          this.serie = data;
+        },
+        (error) => {
+          console.error('Error al obtener los detalles de la serie:', error);
+        }
+      );
     } else {
-      // Aquí puedes manejar el caso donde idSerie es null, por ejemplo, redireccionar o mostrar un mensaje de error
       console.error('No se proporcionó un ID de serie válido.');
     }
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
   }
 }

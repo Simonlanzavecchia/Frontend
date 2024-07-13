@@ -1,12 +1,14 @@
 <div class="container mt-4">
-    <div class="row">
-      <!-- Columna izquierda para la imagen de la serie -->
-      <div class="col-md-4">
-        <img [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="img-fluid" style="border-radius: 8px;">
-      </div>
-      
-      <!-- Columna derecha para la información de la serie -->
-      <div class="col-md-8">
+  <!-- Contenido cuando la serie está definida y no hay carga -->
+  <div class="row align-items-center">
+    <!-- Columna para la imagen -->
+    <div class="col-md-4 mb-4 mb-md-0">
+      <img [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="img-fluid serie-image">
+    </div>
+    
+    <!-- Columna para la descripción de la serie -->
+    <div class="col-md-8">
+      <div class="d-flex align-items-start flex-column h-100">
         <h2>{{ serie.Series_Title }}</h2>
         <div>
           <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
@@ -24,9 +26,11 @@
           <strong>Overview:</strong>
           <p>{{ serie.Overview }}</p>
         </div>
-        
-        <!-- Puedes mostrar más detalles según tu modelo de datos -->
+        <div class="mt-auto text-center"> <!-- Centrar el contenido en la parte inferior -->
+          <button class="btn btn-primary btn-lg custom-btn" (click)="goToHome()">Ir a Inicio</button>
+        </div>
       </div>
     </div>
   </div>
-  
+</div>
+

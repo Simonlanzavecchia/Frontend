@@ -1,0 +1,18 @@
+/* Estilos para la imagen de la serie */
+.serie-image {
+    border-radius: 8px; /* Borde redondeado */
+    max-width: 100%; /* Tamaño máximo de la imagen */
+    height: auto; /* Altura automática según el ancho */
+  }
+  
+  /* Estilos para el botón "Ir a Inicio" */
+  .custom-btn {
+    font-size: 1.25rem; /* Tamaño de fuente */
+    padding: 12px 24px; /* Espaciado interno del botón */
+    border-radius: 10px; /* Borde redondeado */
+  }
+  
+  .custom-btn:hover {
+    background-color: #2c5aa8; /* Color de fondo al pasar el mouse */
+  }
+  

@@ -5,6 +5,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { Router } from '@angular/router';
 import { SeriesService } from '../../services/series.service';
 import { serie } from '../../../types/series.types';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -12,12 +13,15 @@ import { serie } from '../../../types/series.types';
   imports: [
     CommonModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule // Agrega RouterModule a la lista de imports
   ],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
   providers: [SeriesService]
 })
+
+
 export class CarouselComponent implements OnInit {
 
   seriesData: serie[] = [];
@@ -28,6 +32,7 @@ export class CarouselComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllSeries();
   }
+
 
   responsiveOptions: any[] = [
     {
