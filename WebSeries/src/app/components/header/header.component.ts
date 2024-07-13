@@ -2,13 +2,15 @@ import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { SeriesService } from '../../services/series.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, ToolbarModule, ButtonModule],
+  imports: [CommonModule, ToolbarModule, ButtonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
@@ -17,13 +19,10 @@ export class HeaderComponent {
   items: MenuItem[];
   menuVisible = false;
   loginMenuVisible = false;
+  searchTerm: string = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private seriesService: SeriesService) {
     this.items = [
-      {
-        label: 'Buscar',
-        icon: 'pi pi-search'
-      },
       {
         label: 'Ver',
         items: [
@@ -75,7 +74,31 @@ export class HeaderComponent {
       console.error("Invalid genre");
     }
   }
-  
+
+  searchSeries() {
+    if (this.searchTerm) {
+      this.seriesService.getSeriesName(this.searchTerm).subscribe(
+        series => {
+          if (series) {
+            this.goToSeriesDetails(series._id);
+          } else {
+            console.error("Serie no encontrada");
+          }
+        },
+        error => {
+          console.error('Error fetching series:', error);
+        }
+      );
+    }
+  }
+
+  goToSeriesDetails(idSerie: string): void {
+    this.router.navigate(['/series', idSerie]);
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
+  }
 
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: Event) {

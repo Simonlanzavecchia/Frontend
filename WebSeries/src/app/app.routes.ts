@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent},
   { path: 'series/:idSerie', component: SerieComponent }
+  
 ];

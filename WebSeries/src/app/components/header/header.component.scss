@@ -11,7 +11,7 @@
   border: 1px solid #5e5d63;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  margin-top: 135px;
+  margin-top: 150px;
   border-radius: 8px;
 
   &.visible {
@@ -30,8 +30,8 @@
       display: flex;
       align-items: center;
       background-color: #ff9a9a;
-      color: black; 
-      border-radius: 8px; 
+      color: black;
+      border-radius: 8px;
       margin: 3px;
       border: 1px solid white;
 
@@ -55,8 +55,28 @@
         display: block;
       }
 
-      i {
-        margin-right: 8px;
+      .menu-item {
+        display: flex;
+        align-items: center;
+
+        input {
+          flex: 1;
+          border: none;
+          outline: none;
+          background-color: black;
+          color: white;
+          padding: 6px 8px; // Adjusted padding for better alignment
+          border-radius: 8px;
+          margin-right: 6px; // Space between input and button
+          height: 36px; // Consistent height
+          font-size: 14px; // Adjusted font size
+        }
+
+        p-button {
+          height: 36px; // Match input height
+          font-size: 14px; // Adjusted font size
+          padding: 0 8px; // Adjusted padding for button
+        }
       }
     }
   }
