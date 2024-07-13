@@ -43,6 +43,22 @@ export class SeriesService {
     );
   }
 
+  getSeriesName(nombre: string): Observable<serie> {
+    return from(
+      fetch(`${this.apiUrl}/series/name/`+nombre)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .catch(error => {
+          console.error('Error fetching series:', error);
+          throw error;
+        })
+    );
+  }
+
   getSerieById(id: string): Observable<serie> {
     return from(
       fetch(`${this.apiUrl}/series/${id}`)
@@ -58,4 +74,5 @@ export class SeriesService {
         })
     );
   }
+
 }

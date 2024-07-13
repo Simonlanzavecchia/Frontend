@@ -1,6 +1,7 @@
 import { reviews } from "./reviews.types";
 
 export interface serie {
+    _id: string,
     Poster_Link: String, 
     Series_Title: String,
     Runtime_of_Series: String,
