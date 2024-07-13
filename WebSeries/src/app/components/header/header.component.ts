@@ -27,7 +27,8 @@ export class HeaderComponent {
         label: 'Ver',
         items: [
           { label: 'Mejor rating', icon: 'pi pi-star' },
-          { label: 'Horror', icon: 'pi pi-prime' }
+          { label: 'Horror', icon: 'pi pi-prime' },
+          { label: 'Romance', icon: 'pi pi-heart-fill'}
         ]
       }
     ];
