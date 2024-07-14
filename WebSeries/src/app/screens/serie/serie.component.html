@@ -1,36 +1,43 @@
-<div class="container mt-4">
-  <!-- Contenido cuando la serie está definida y no hay carga -->
-  <div class="row align-items-center">
+<button class="custom-btn top-left-btn" (click)="goToHome()">Volver a Inicio</button>
+<div class="container">
+  <div class="content">
+    <!-- Título -->
+    <h2 class="text-center">{{ serie.Series_Title }}</h2>
+    
     <!-- Columna para la imagen -->
-    <div class="col-md-4 mb-4 mb-md-0">
-      <img [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="img-fluid serie-image">
+    <div class="image-container text-center">
+      <img src="{{ serie.Poster_Link }}" alt="{{ serie.Series_Title }}" class="serie-image">
     </div>
     
     <!-- Columna para la descripción de la serie -->
-    <div class="col-md-8">
-      <div class="d-flex align-items-start flex-column h-100">
-        <h2>{{ serie.Series_Title }}</h2>
-        <div>
-          <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
-        </div>
-        <div>
-          <strong>Genre:</strong> {{ serie.Genre }}
-        </div>
-        <div>
-          <strong>Runtime of Series:</strong> {{ serie.Runtime_of_Series }}
-        </div>
-        <div>
-          <strong>Certificate:</strong> {{ serie.Certificate }}
-        </div>
-        <div>
-          <strong>Overview:</strong>
-          <p>{{ serie.Overview }}</p>
-        </div>
-        <div class="mt-auto text-center"> <!-- Centrar el contenido en la parte inferior -->
-          <button class="btn btn-primary btn-lg custom-btn" (click)="goToHome()">Ir a Inicio</button>
-        </div>
+    <div class="description text-center">
+      <div>
+        <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
+      </div>
+      <div>
+        <strong>Genre:</strong> {{ serie.Genre }}
+      </div>
+      <div>
+        <strong>Runtime of Series:</strong> {{ serie.Runtime_of_Series }}
+      </div>
+      <div>
+        <strong>Certificate:</strong> {{ serie.Certificate }}
+      </div>
+      <div>
+        <strong>Overview:</strong>
+        <p>{{ serie.Overview }}</p>
+      </div>
+      
+      <!-- Área de comentarios -->
+      <div>
+        <h4>Comentarios sobre la serie</h4>
+        <!-- Textarea más grande -->
+        <textarea name="description" class="comment-input" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
+      </div>
+      
+      <div>
+        <button class="custom-btn" (click)="createReview()">Enviar Comentario</button>
       </div>
     </div>
   </div>
 </div>
-

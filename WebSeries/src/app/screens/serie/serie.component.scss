@@ -1,18 +1,68 @@
-/* Estilos para la imagen de la serie */
-.serie-image {
-    border-radius: 8px; /* Borde redondeado */
-    max-width: 100%; /* Tamaño máximo de la imagen */
-    height: auto; /* Altura automática según el ancho */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
   }
   
-  /* Estilos para el botón "Ir a Inicio" */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura total de la pantalla */
+    position: relative;
+  }
+  
+  .content {
+    max-width: 800px; /* Ancho máximo del contenido */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .serie-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .pl-md-4 {
+    padding-left: 1.5rem;
+  }
+  
+  .comment-input {
+    width: 100%;
+    min-height: 150px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
   .custom-btn {
-    font-size: 1.25rem; /* Tamaño de fuente */
-    padding: 12px 24px; /* Espaciado interno del botón */
-    border-radius: 10px; /* Borde redondeado */
+    font-size: 1.25rem;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-color: #ee0000f4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
   }
   
   .custom-btn:hover {
-    background-color: #2c5aa8; /* Color de fondo al pasar el mouse */
+    background-color: #d62222;
+  }
+
+  .top-left-btn {
+    position: absolute;
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    left: 10px; /* Ajusta la distancia desde la izquierda */
+    padding: 8px 12px; /* Ajusta el padding para reducir el tamaño del botón */
+    font-size: 16px; /* Ajusta el tamaño del texto del botón */
   }
   
