@@ -2,16 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeriesService } from '../../services/series.service';
 import { ReviewService } from '../../services/review.service';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-serie',
-  templateUrl: './serie.component.html',
-  styleUrls: ['./serie.component.scss'],
+  imports: [FormsModule],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule]  // Asegúrate de importar HttpClientModule aquí
+  templateUrl: './serie.component.html',
+  styleUrls: ['./serie.component.scss']
 })
 export class SerieComponent implements OnInit {
   idUsuario: string = '';
@@ -28,7 +26,6 @@ export class SerieComponent implements OnInit {
     private serieService: SeriesService,
     private reviewService: ReviewService,
     private router: Router
-    
   ) {}
 
   ngOnInit(): void {
@@ -48,12 +45,13 @@ export class SerieComponent implements OnInit {
   }
 
   createReview(): void {
-    console.log('enviar review'); // Agrega un log para verificar que se llama el método
+    console.log('enviar review');
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
     if (idSerie !== null) {
       this.reviewService.createReview(this.idUsuario, this.review, idSerie)
         .then(() => {
           console.log('review Creada');
+          this.router.navigate(['/']); // Redirige a la pantalla de inicio después de crear la revisión
         })
         .catch(error => {
           console.error('Error:', error);

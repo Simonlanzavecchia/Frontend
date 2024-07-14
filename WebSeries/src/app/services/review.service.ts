@@ -12,7 +12,7 @@ export class ReviewService {
   async createReview(idUsuario: string, review: any, idSerie: string): Promise<any> {
     const reviewData = {
       Review_Title: 'The Walking Dead',
-      Description: 'JORGE',
+      Description: review.Description,
       Rating: 4.6,
       Review_Owner: '666210c2aa10eadb535dcc5b',
       Series_IDS: idSerie

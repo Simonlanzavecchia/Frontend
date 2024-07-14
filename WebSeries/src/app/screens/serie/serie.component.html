@@ -2,37 +2,36 @@
 <div class="container">
   <div class="content">
     <!-- Título -->
-    <h2 class="text-center">{{ serie.Series_Title }}</h2>
+    <h2 class="text-center">{{ serie?.Series_Title }}</h2>
     
     <!-- Columna para la imagen -->
     <div class="image-container text-center">
-      <img src="{{ serie.Poster_Link }}" alt="{{ serie.Series_Title }}" class="serie-image">
+      <img [src]="serie?.Poster_Link" [alt]="serie?.Series_Title" class="serie-image">
     </div>
     
     <!-- Columna para la descripción de la serie -->
     <div class="description text-center">
       <div>
-        <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
+        <strong>IMDB Rating:</strong> {{ serie?.IMDB_Rating }}
       </div>
       <div>
-        <strong>Genre:</strong> {{ serie.Genre }}
+        <strong>Genre:</strong> {{ serie?.Genre }}
       </div>
       <div>
-        <strong>Runtime of Series:</strong> {{ serie.Runtime_of_Series }}
+        <strong>Runtime of Series:</strong> {{ serie?.Runtime_of_Series }}
       </div>
       <div>
-        <strong>Certificate:</strong> {{ serie.Certificate }}
+        <strong>Certificate:</strong> {{ serie?.Certificate }}
       </div>
       <div>
         <strong>Overview:</strong>
-        <p>{{ serie.Overview }}</p>
+        <p>{{ serie?.Overview }}</p>
       </div>
       
       <!-- Área de comentarios -->
       <div>
-        <h4>Comentarios sobre la serie</h4>
-        <!-- Textarea más grande -->
-        <textarea name="description" class="comment-input" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
+          <label for="description">Comentarios sobre la serie</label>
+          <input type = "description" name="description" id="description" [(ngModel)]="review.Description" placeholder="Escribe tu comentario aquí..." class = comment-input>
       </div>
       
       <div>
