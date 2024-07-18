@@ -24,12 +24,18 @@
     Weeklyd
   </div>
   <div class="p-toolbar-group-end">
-    <div #loginMenu class="login-menu" [class.visible]="loginMenuVisible">
-      <ul>
-        <li (click)="navigateToLogin(); loginMenuItemClicked()">Ingresar</li>
-        <li (click)="navigateToRegister(); loginMenuItemClicked()">Registrarse</li>
-      </ul>
+    <div *ngIf="isLoggedIn(); else loggedOutTemplate">
+      <span>Hola, {{ currentUser.User_Name }}  </span>
+      <p-button label="Desconectarse" (click)="logout()" severity="danger"></p-button>
     </div>
-    <p-button #loginButton (click)="toggleLoginMenu($event)" icon="pi pi-user" severity="danger"></p-button>
+    <ng-template #loggedOutTemplate>
+      <div #loginMenu class="login-menu" [class.visible]="loginMenuVisible">
+        <ul>
+          <li (click)="navigateToLogin(); loginMenuItemClicked()">Ingresar</li>
+          <li (click)="navigateToRegister(); loginMenuItemClicked()">Registrarse</li>
+        </ul>
+      </div>
+      <p-button #loginButton (click)="toggleLoginMenu($event)" icon="pi pi-user" severity="danger"></p-button>
+    </ng-template>
   </div>
 </p-toolbar>

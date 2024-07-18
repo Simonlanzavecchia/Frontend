@@ -1,28 +1,75 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { user } from '../../types/users.types';
-import { Observable, from } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000'; // Cambia esta URL por la de tu backend
+  private apiUrl = 'http://localhost:3000';
 
-  constructor() {}
+  constructor() { }
 
   getUserById(idUsuario: string): Observable<any> {
-    return from(fetch(`${this.apiUrl}/users/${idUsuario}`)
-    .then(response => response.json())
-    .then(data => console.log(data))
+    return from(fetch(`${this.apiUrl}/users/name/${idUsuario}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .catch(error => console.error('Error:', error))
   );
   }
 
   login(idUsuario: string, contrasenia: string): Observable<boolean> {
     return this.getUserById(idUsuario).pipe(
-      map(user => user && user.contrasenia === contrasenia)
+      tap(user => console.log('Usuario obtenido:', user)),
+      map(user => {
+        if (user) {
+          const isPasswordCorrect = user.User_Password === contrasenia;
+          console.log(`Contraseña correcta: ${isPasswordCorrect}`);
+          this.setLocalStorageItem('currentUser', JSON.stringify(user));
+          return isPasswordCorrect;
+        }
+        return false;
+      }),
+      catchError(error => {
+        console.error('Error en login:', error);
+        return of(false);
+      })
     );
+  }
+
+  logout(): void {
+    this.removeLocalStorageItem('currentUser');
+  }
+
+  getCurrentUser(): any {
+    const user = this.getLocalStorageItem('currentUser');
+    return user ? JSON.parse(user) : null;
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getLocalStorageItem('currentUser');
+  }
+
+  private getLocalStorageItem(key: string): string | null {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  private setLocalStorageItem(key: string, value: string): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  private removeLocalStorageItem(key: string): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(key);
+    }
   }
 }

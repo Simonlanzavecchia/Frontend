@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './serie.component.html',
   styleUrls: ['./serie.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule]  // Asegúrate de importar HttpClientModule aquí
+  imports: [CommonModule, FormsModule, HttpClientModule]
 })
 export class SerieComponent implements OnInit {
   idUsuario: string = '';
@@ -21,7 +21,7 @@ export class SerieComponent implements OnInit {
     Rating: 0,
     Series_IDS: ''
   };
-  serie: any;
+  serie: any = {};
 
   constructor(
     private route: ActivatedRoute, 
@@ -31,12 +31,16 @@ export class SerieComponent implements OnInit {
     
   ) {}
 
+  reviews: any[] = [];
+
   ngOnInit(): void {
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
     if (idSerie !== null) {
       this.serieService.getSerieById(idSerie).subscribe(
         (data) => {
           this.serie = data;
+          // Cargar las reviews
+          this.loadReviews();
         },
         (error) => {
           console.error('Error al obtener los detalles de la serie:', error);
@@ -47,13 +51,37 @@ export class SerieComponent implements OnInit {
     }
   }
 
+  loadReviews(): void {
+    const idSerie = this.route.snapshot.paramMap.get('idSerie');
+    if (idSerie !== null) {
+      this.reviewService.getReviewsBySeries(idSerie)
+        .then((reviews) => {
+          // Tomar las últimas 5 reviews
+          console.log(reviews);
+          this.reviews = reviews.slice(-5);
+        })
+        .catch(error => {
+          console.error('Error al obtener las reviews:', error);
+        });
+    }
+  }
+
   createReview(): void {
-    console.log('enviar review'); // Agrega un log para verificar que se llama el método
+    console.log('enviar review');
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
     if (idSerie !== null) {
       this.reviewService.createReview(this.idUsuario, this.review, idSerie)
         .then(() => {
           console.log('review Creada');
+          // Vaciar la caja de comentarios
+          this.review = {
+            Review_Title: '',
+            Description: '',
+            Rating: 0,
+            Series_IDS: ''
+          };
+          // Actualizar las reviews después de crear una nueva
+          this.loadReviews();
         })
         .catch(error => {
           console.error('Error:', error);
