@@ -30,9 +30,11 @@
         <button class="custom-btn" (click)="createReview()">Enviar Comentario</button>
       </div>
       <div *ngIf="reviews.length > 0">
-        <h5>Últimos comentarios:</h5>
-        <div *ngFor="let review of reviews">
-          <strong>{{ review.Review_Owner.username }}</strong> - {{ review.Creation_Date | date }}
+        <div *ngFor="let review of reviews" class="review-box">
+          <div class="review-header">
+            <strong>{{ review.username }}</strong>
+            <span>{{ review.Creation_Date | date }}</span>
+          </div>
           <p>{{ review.Description }}</p>
         </div>
       </div>

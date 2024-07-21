@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor() { }
 
-  getUserById(idUsuario: string): Observable<any> {
+  getUserByName(idUsuario: string): Observable<any> {
     return from(fetch(`${this.apiUrl}/users/name/${idUsuario}`)
     .then(response => {
       if (!response.ok) {
@@ -22,8 +22,20 @@ export class AuthService {
   );
   }
 
+  getUserById(idUsuario: string): Observable<any> {
+    return from(fetch(`${this.apiUrl}/users/${idUsuario}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .catch(error => console.error('Error:', error))
+  );
+  }
+
   login(idUsuario: string, contrasenia: string): Observable<boolean> {
-    return this.getUserById(idUsuario).pipe(
+    return this.getUserByName(idUsuario).pipe(
       tap(user => console.log('Usuario obtenido:', user)),
       map(user => {
         if (user) {

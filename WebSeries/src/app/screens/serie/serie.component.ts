@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeriesService } from '../../services/series.service';
 import { ReviewService } from '../../services/review.service';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,16 +23,15 @@ export class SerieComponent implements OnInit {
     Series_IDS: ''
   };
   serie: any = {};
+  reviews: any[] = [];
 
   constructor(
     private route: ActivatedRoute, 
     private serieService: SeriesService,
     private reviewService: ReviewService,
+    private authService: AuthService,
     private router: Router
-    
   ) {}
-
-  reviews: any[] = [];
 
   ngOnInit(): void {
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
@@ -51,28 +51,29 @@ export class SerieComponent implements OnInit {
     }
   }
 
-  loadReviews(): void {
+  async loadReviews(): Promise<void> {
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
     if (idSerie !== null) {
-      this.reviewService.getReviewsBySeries(idSerie)
-        .then((reviews) => {
-          // Tomar las últimas 5 reviews
-          console.log(reviews);
-          this.reviews = reviews.slice(-5);
-        })
-        .catch(error => {
-          console.error('Error al obtener las reviews:', error);
-        });
+      try {
+        const reviews = await this.reviewService.getReviewsBySeries(idSerie);
+        this.reviews = await Promise.all(reviews.slice(-5).map(async (review: any) => {
+          const user = await this.authService.getUserById(review.Review_Owner).toPromise();
+          return {
+            ...review,
+            username: user.User_Name
+          };
+        }));
+      } catch (error) {
+        console.error('Error al obtener las reviews:', error);
+      }
     }
   }
 
   createReview(): void {
-    console.log('enviar review');
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
-    if (idSerie !== null) {
+    if ((idSerie !== null) && (this.idUsuario !== null)) {
       this.reviewService.createReview(this.idUsuario, this.review, idSerie)
         .then(() => {
-          console.log('review Creada');
           // Vaciar la caja de comentarios
           this.review = {
             Review_Title: '',
