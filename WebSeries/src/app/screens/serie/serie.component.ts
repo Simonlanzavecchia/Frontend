@@ -72,7 +72,7 @@ export class SerieComponent implements OnInit {
 
   createReview(): void {
     const idSerie = this.route.snapshot.paramMap.get('idSerie');
-    if ((idSerie !== null) && (this.idUsuario !== null)) {
+    if ((idSerie !== null) && (this.authService.getEstadoSesion())) {
       this.reviewService.createReview(this.idUsuario, this.review, idSerie)
         .then(() => {
           this.review = {
