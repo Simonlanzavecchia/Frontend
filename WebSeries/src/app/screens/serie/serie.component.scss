@@ -4,26 +4,26 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow: auto; /* Permitir desplazamiento cuando el contenido excede la altura de la ventana */
 }
 
 .container {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex-direction: column;  /* Coloca los contenedores uno debajo del otro */
+  height: 100vh;           /* Asegura que el contenedor ocupe toda la altura de la ventana */
   padding: 20px;
   box-sizing: border-box;
 }
 
 .serie-info {
-  flex: 0 1 auto;
+  flex: 0 1 auto; /* Ocupa solo el espacio necesario y permite crecer según el contenido */
   max-width: 800px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #111;
+  background-color: #111; /* Fondo para el contenedor de la serie */
   border-radius: 8px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px; /* Espacio entre la información de la serie y los comentarios */
 }
 
 .text-center {
@@ -38,13 +38,13 @@ body {
 
 .comment-input {
   width: 100%;
-  min-height: 150px;
+  min-height: 150px; /* Tamaño mínimo del área de comentarios */
   padding: 10px;
   font-size: 14px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  background-color: #222;
-  color: #fff;
+  background-color: #222; /* Fondo para el área de comentarios */
+  color: #fff; /* Color del texto en el área de comentarios */
 }
 
 .custom-btn {
@@ -70,35 +70,16 @@ body {
 }
 
 .review-section {
-  flex: 1 1 auto;
+  flex: 1 1 auto; /* Ocupa el espacio restante y permite crecer hacia abajo */
   max-width: 800px;
   width: 100%;
+  min-height: 300px; /* Tamaño mínimo para la sección de reseñas */
   padding: 20px;
   box-sizing: border-box;
-  background-color: #111;
+  background-color: #111; /* Fondo para el contenedor de los comentarios */
   border-radius: 8px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #333 #111;
+  overflow-y: auto; /* Permite el desplazamiento si el contenido excede la altura del contenedor */
 }
-
-.review-section::-webkit-scrollbar {
-  width: 8px;
-}
-
-.review-section::-webkit-scrollbar-track {
-  background: #111;
-}
-
-.review-section::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 8px;
-}
-
-.review-section::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 
 .review-box {
   background-color: #242424;
