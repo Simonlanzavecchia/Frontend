@@ -19,20 +19,23 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
-    console.log('Botón de Iniciar Sesión presionado'); // Agrega un log para verificar que se llama el método
+    console.log('Botón de Iniciar Sesión presionado');
     this.authService.login(this.idUsuario, this.contrasenia).pipe(
-        tap((success: boolean) => {
-            if (success) {
-                this.router.navigate(['/']); // Redirige a la página deseada en caso de éxito
-            } else {
-                alert('Usuario o contraseña incorrectos');
-            }
-        }),
-        catchError((error: any) => {
-            console.error('Error al intentar iniciar sesión');
-            alert('Ocurrió un error, por favor intenta de nuevo más tarde');
-            return of(null); // Devuelve un observable vacío para finalizar el stream
-        })
+      tap((success: boolean) => {
+        if (success) {
+          console.log('Inicio de sesión exitoso');
+          this.router.navigate(['/']);
+        } else {
+          console.log('Usuario o contraseña incorrectos');
+          alert('Usuario o contraseña incorrectos');
+        }
+      }),
+      catchError((error: any) => {
+        console.error('Error al intentar iniciar sesión:', error);
+        alert('Ocurrió un error, por favor intenta de nuevo más tarde');
+        return of(null);
+      })
     ).subscribe();
   }
+  
 }

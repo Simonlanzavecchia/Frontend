@@ -1,41 +1,42 @@
 <button class="custom-btn top-left-btn" (click)="goToHome()">Volver a Inicio</button>
 <div class="container">
   <div class="content">
-    <!-- Título -->
     <h2 class="text-center">{{ serie?.Series_Title }}</h2>
-    
-    <!-- Columna para la imagen -->
     <div class="image-container text-center">
-      <img [src]="serie?.Poster_Link" [alt]="serie?.Series_Title" class="serie-image">
+      <img *ngIf="serie?.Poster_Link" [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="serie-image">
     </div>
-    
-    <!-- Columna para la descripción de la serie -->
     <div class="description text-center">
-      <div>
-        <strong>IMDB Rating:</strong> {{ serie?.IMDB_Rating }}
+      <div *ngIf="serie?.IMDB_Rating">
+        <strong>IMDB Rating:</strong> {{ serie.IMDB_Rating }}
       </div>
-      <div>
-        <strong>Genre:</strong> {{ serie?.Genre }}
+      <div *ngIf="serie?.Genre">
+        <strong>Genre:</strong> {{ serie.Genre }}
       </div>
-      <div>
-        <strong>Runtime of Series:</strong> {{ serie?.Runtime_of_Series }}
+      <div *ngIf="serie?.Runtime_of_Series">
+        <strong>Runtime of Series:</strong> {{ serie.Runtime_of_Series }}
       </div>
-      <div>
-        <strong>Certificate:</strong> {{ serie?.Certificate }}
+      <div *ngIf="serie?.Certificate">
+        <strong>Certificate:</strong> {{ serie.Certificate }}
       </div>
-      <div>
+      <div *ngIf="serie?.Overview">
         <strong>Overview:</strong>
         <p>{{ serie?.Overview }}</p>
       </div>
-      
-      <!-- Área de comentarios -->
       <div>
-          <label for="description">Comentarios sobre la serie</label>
-          <input type = "description" name="description" id="description" [(ngModel)]="review.Description" placeholder="Escribe tu comentario aquí..." class = comment-input>
+        <h4>Comentarios sobre la serie</h4>
+        <textarea name="description" [(ngModel)]="review.Description" class="comment-input" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
       </div>
-      
       <div>
         <button class="custom-btn" (click)="createReview()">Enviar Comentario</button>
+      </div>
+      <div *ngIf="reviews.length > 0">
+        <div *ngFor="let review of reviews" class="review-box">
+          <div class="review-header">
+            <strong>{{ review.username }}</strong>
+            <span>{{ review.Creation_Date | date }}</span>
+          </div>
+          <p>{{ review.Description }}</p>
+        </div>
       </div>
     </div>
   </div>

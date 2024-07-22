@@ -5,7 +5,7 @@ export interface reviews {
     Review_Title: String,
     Description: String,
     Rating: Number, 
-    Review_Owner: user,
-    Series_IDS: serie,
+    Review_Owner: string,
+    Series_IDS: string,
     Creation_Date: Date
 }

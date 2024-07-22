@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
 import { SeriesService } from '../../services/series.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,8 +21,14 @@ export class HeaderComponent {
   menuVisible = false;
   loginMenuVisible = false;
   searchTerm: string = '';
+  currentUser: any;
 
-  constructor(private router: Router, private seriesService: SeriesService) {
+
+  ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
+  }
+
+  constructor(private router: Router, private seriesService: SeriesService, private authService: AuthService) {
     this.items = [
       {
         label: 'Ver',
@@ -99,6 +106,16 @@ export class HeaderComponent {
 
   stopPropagation(event: Event) {
     event.stopPropagation();
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.currentUser = null;
+    this.router.navigate(['/']);
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   @HostListener('document:click', ['$event'])

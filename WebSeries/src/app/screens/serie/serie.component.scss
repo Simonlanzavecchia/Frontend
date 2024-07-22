@@ -1,68 +1,102 @@
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Altura total de la pantalla */
-    position: relative;
-  }
-  
-  .content {
-    max-width: 800px; /* Ancho máximo del contenido */
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .serie-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .pl-md-4 {
-    padding-left: 1.5rem;
-  }
-  
-  .comment-input {
-    width: 100%;
-    min-height: 150px;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .custom-btn {
-    font-size: 1.25rem;
-    padding: 12px 24px;
-    border-radius: 10px;
-    background-color: #ee0000f4;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .custom-btn:hover {
-    background-color: #d62222;
-  }
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  .top-left-btn {
-    position: absolute;
-    top: 10px; /* Ajusta la distancia desde la parte superior */
-    left: 10px; /* Ajusta la distancia desde la izquierda */
-    padding: 8px 12px; /* Ajusta el padding para reducir el tamaño del botón */
-    font-size: 16px; /* Ajusta el tamaño del texto del botón */
-  }
-  
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.content {
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.serie-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.pl-md-4 {
+  padding-left: 1.5rem;
+}
+
+.comment-input {
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.custom-btn {
+  font-size: 1.25rem;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background-color: #ee0000f4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-btn:hover {
+  background-color: #d62222;
+}
+
+.top-left-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+
+.review-box {
+  background-color: #242424;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #bbbbbb;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-box .review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.review-box .review-header strong {
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+.review-box .review-header span {
+  font-size: 12px;
+  color: #bbbbbb;
+}
+
+.review-box p {
+  margin: 0;
+  font-size: 16px;
+}
+
