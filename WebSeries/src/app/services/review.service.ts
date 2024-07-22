@@ -50,7 +50,6 @@ export class ReviewService {
         const errorText = await response.text();
         throw new Error('Network response was not ok: ' + response.statusText + ' - ' + errorText);
       }
-      // Tomar las reviews unicamente
       return response.json();
     } catch (error) {
       console.error('Failed to fetch:', error);

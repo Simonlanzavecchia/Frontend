@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #000000; /* Cambiar el color de fondo a blanco */
+    background-color: #000000; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,12 +10,30 @@ body {
 }
   
   .container {
-    background-color: #ffffff; /* Cambiar el fondo a blanco */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(233, 229, 229, 0.1);
-    color: #000000; /* Cambiar el color del texto a negro */
+    color: #000000; 
     width: 450px;
+}
+
+.top-left-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #ee0000f4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto; 
+}
+
+.top-left-btn:hover {
+  background-color: #d62222;
 }
   
   h2 {

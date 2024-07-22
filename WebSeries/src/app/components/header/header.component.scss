@@ -65,17 +65,17 @@
           outline: none;
           background-color: black;
           color: white;
-          padding: 6px 8px; // Adjusted padding for better alignment
+          padding: 6px 8px; 
           border-radius: 8px;
-          margin-right: 6px; // Space between input and button
-          height: 36px; // Consistent height
-          font-size: 14px; // Adjusted font size
+          margin-right: 6px; 
+          height: 36px; 
+          font-size: 14px; 
         }
 
         p-button {
-          height: 36px; // Match input height
-          font-size: 14px; // Adjusted font size
-          padding: 0 8px; // Adjusted padding for button
+          height: 36px; 
+          font-size: 14px; 
+          padding: 0 8px; 
         }
       }
     }

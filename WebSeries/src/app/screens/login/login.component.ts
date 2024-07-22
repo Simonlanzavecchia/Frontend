@@ -25,9 +25,11 @@ export class LoginComponent {
         if (success) {
           console.log('Inicio de sesión exitoso');
           this.router.navigate(['/']);
+          this.authService.setActiveSession();
         } else {
           console.log('Usuario o contraseña incorrectos');
           alert('Usuario o contraseña incorrectos');
+          this.authService.setUnactiveSession();
         }
       }),
       catchError((error: any) => {
@@ -36,6 +38,10 @@ export class LoginComponent {
         return of(null);
       })
     ).subscribe();
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
   }
   
 }

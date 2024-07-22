@@ -1,29 +1,30 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule para trabajar con formularios
+import { FormsModule } from '@angular/forms';
 import { RegService } from '../../services/reg.service';
-import { PopupComponent } from '../../components/mensaje-emergente/mensaje-emergente.component'; // Importa PopupComponent
-import { CommonModule } from '@angular/common'; // Importa CommonModule si es necesario
+import { PopupComponent } from '../../components/mensaje-emergente/mensaje-emergente.component'; 
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    CommonModule, // Si es necesario, importa CommonModule para directivas básicas como *ngIf
-    FormsModule, // Importa FormsModule para trabajar con formularios en la plantilla
+    CommonModule,
+    FormsModule, 
     PopupComponent
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [RegService], // Proveedor de RegService si es necesario en este componente
+  providers: [RegService], 
 })
 export class RegisterComponent {
   nuevoUsuario: string = '';
   nuevaContrasenia: string = '';
   confirmacionContrasenia: string = '';
 
-  @ViewChild(PopupComponent) popup!: PopupComponent; // ViewChild para obtener una referencia al componente PopupComponent
+  @ViewChild(PopupComponent) popup!: PopupComponent;
 
-  constructor(private regService: RegService) {}
+  constructor(private regService: RegService, private router: Router) {}
 
   ngAfterViewInit() {
     if (!this.popup) {
@@ -46,7 +47,11 @@ export class RegisterComponent {
           console.error('Error:', error);
           this.popup.message = 'El usuario ya existe.';
         });
-      this.popup.show(); // Muestra el popup después de actualizar el mensaje
+      this.popup.show(); 
     }
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
   }
 }

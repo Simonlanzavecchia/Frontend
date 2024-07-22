@@ -75,14 +75,12 @@ export class SerieComponent implements OnInit {
     if ((idSerie !== null) && (this.idUsuario !== null)) {
       this.reviewService.createReview(this.idUsuario, this.review, idSerie)
         .then(() => {
-          // Vaciar la caja de comentarios
           this.review = {
             Review_Title: '',
             Description: '',
             Rating: 0,
             Series_IDS: ''
           };
-          // Actualizar las reviews después de crear una nueva
           this.loadReviews();
         })
         .catch(error => {

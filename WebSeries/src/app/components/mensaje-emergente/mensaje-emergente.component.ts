@@ -28,7 +28,7 @@ export class PopupComponent {
     this.isVisible = true;
     setTimeout(() => {
       this.isVisible = false;
-      this.router.navigate(['/']); // Redirige a la página de inicio (ajusta la ruta según sea necesario)
+      this.router.navigate(['/']);
     }, timeout);
   }
 

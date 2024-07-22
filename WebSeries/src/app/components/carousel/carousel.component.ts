@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     HttpClientModule,
     CarouselModule,
-    RouterModule // Agrega RouterModule a la lista de imports
+    RouterModule 
   ],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],

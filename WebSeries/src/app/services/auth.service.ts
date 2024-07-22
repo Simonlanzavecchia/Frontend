@@ -57,13 +57,15 @@ export class AuthService {
 
   logout(): void {
     this.removeLocalStorageItem('currentUser');
+    this.setUnactiveSession();
   }
 
   getCurrentUser(): any {
-    if (this.getEstadoSesion()){
+    if (this.getEstadoSesion() == true){
       const user = this.getLocalStorageItem('currentUser');
       return user ? JSON.parse(user) : null;
     }
+    else return null;
   }
 
   isLoggedIn(): boolean {
