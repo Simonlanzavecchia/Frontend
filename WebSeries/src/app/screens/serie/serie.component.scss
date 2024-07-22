@@ -4,21 +4,26 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   height: 100vh;
-  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.content {
+.serie-info {
+  flex: 0 1 auto;
   max-width: 800px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #111;
+  border-radius: 8px;
+  margin-bottom: 20px; 
 }
 
 .text-center {
@@ -31,10 +36,6 @@ body {
   border-radius: 8px;
 }
 
-.pl-md-4 {
-  padding-left: 1.5rem;
-}
-
 .comment-input {
   width: 100%;
   min-height: 150px;
@@ -42,6 +43,8 @@ body {
   font-size: 14px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  background-color: #222;
+  color: #fff;
 }
 
 .custom-btn {
@@ -64,6 +67,36 @@ body {
   left: 10px;
   padding: 8px 12px;
   font-size: 16px;
+}
+
+.review-section {
+  flex: 1 1 auto;
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #111;
+  border-radius: 8px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #333 #111;
+}
+
+.review-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.review-section::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.review-section::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 8px;
+}
+
+.review-section::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 
@@ -99,4 +132,3 @@ body {
   margin: 0;
   font-size: 16px;
 }
-

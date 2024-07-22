@@ -1,6 +1,6 @@
 <button class="custom-btn top-left-btn" (click)="goToHome()">Volver a Inicio</button>
 <div class="container">
-  <div class="content">
+  <div class="serie-info">
     <h2 class="text-center">{{ serie?.Series_Title }}</h2>
     <div class="image-container text-center">
       <img *ngIf="serie?.Poster_Link" [src]="serie.Poster_Link" [alt]="serie.Series_Title" class="serie-image">
@@ -22,21 +22,23 @@
         <strong>Overview:</strong>
         <p>{{ serie?.Overview }}</p>
       </div>
-      <div>
-        <h4>Comentarios sobre la serie</h4>
-        <textarea name="description" [(ngModel)]="review.Description" class="comment-input" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
-      </div>
-      <div>
-        <button class="custom-btn" (click)="createReview()">Enviar Comentario</button>
-      </div>
-      <div *ngIf="reviews.length > 0">
-        <div *ngFor="let review of reviews" class="review-box">
-          <div class="review-header">
-            <strong>{{ review.username }}</strong>
-            <span>{{ review.Creation_Date | date }}</span>
-          </div>
-          <p>{{ review.Description }}</p>
+    </div>
+  </div>
+  <div class="review-section">
+    <div>
+      <h4>Comentarios sobre la serie</h4>
+      <textarea name="description" [(ngModel)]="review.Description" class="comment-input" rows="5" placeholder="Escribe tu comentario aquí..."></textarea>
+    </div>
+    <div>
+      <button class="custom-btn" (click)="createReview()">Enviar Comentario</button>
+    </div>
+    <div *ngIf="reviews.length > 0">
+      <div *ngFor="let review of reviews" class="review-box">
+        <div class="review-header">
+          <strong>{{ review.username }}</strong>
+          <span>{{ review.Creation_Date | date }}</span>
         </div>
+        <p>{{ review.Description }}</p>
       </div>
     </div>
   </div>
