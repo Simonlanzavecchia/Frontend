@@ -7,6 +7,7 @@ import { Observable, from, of } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000';
+  sesionActiva: boolean = false;
 
   constructor() { }
 
@@ -42,6 +43,7 @@ export class AuthService {
           const isPasswordCorrect = user.User_Password === contrasenia;
           console.log(`Contraseña correcta: ${isPasswordCorrect}`);
           this.setLocalStorageItem('currentUser', JSON.stringify(user));
+          this.setActiveSession();
           return isPasswordCorrect;
         }
         return false;
@@ -58,8 +60,10 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
-    const user = this.getLocalStorageItem('currentUser');
-    return user ? JSON.parse(user) : null;
+    if (this.getEstadoSesion()){
+      const user = this.getLocalStorageItem('currentUser');
+      return user ? JSON.parse(user) : null;
+    }
   }
 
   isLoggedIn(): boolean {
@@ -77,6 +81,18 @@ export class AuthService {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(key, value);
     }
+  }
+
+  setActiveSession(){
+    this.sesionActiva = true;
+  }
+
+  setUnactiveSession(){
+    this.sesionActiva = false;
+  }
+
+  getEstadoSesion(){
+    return this.sesionActiva
   }
 
   private removeLocalStorageItem(key: string): void {

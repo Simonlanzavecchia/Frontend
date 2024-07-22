@@ -115,7 +115,7 @@ export class HeaderComponent {
   }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+    return this.authService.getEstadoSesion();
   }
 
   @HostListener('document:click', ['$event'])

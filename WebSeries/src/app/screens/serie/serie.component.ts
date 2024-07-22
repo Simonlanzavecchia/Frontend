@@ -5,11 +5,11 @@ import { ReviewService } from '../../services/review.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-serie',
-  imports: [FormsModule],
-  standalone: true,
+
   templateUrl: './serie.component.html',
   styleUrls: ['./serie.component.scss'],
   standalone: true,
